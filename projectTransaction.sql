@@ -1,12 +1,10 @@
-use universityprojectv4;
+use universityprojectv5;
 
 
 /* ---------------------- TRANSACTION in success state ---------------------- */
-
 Begin TRY
 BEGIN TRANSACTION
-insert into Student VALUES(1,'khaled','231@feng',' undergradu level 1'),(2,'wjlks','231@feng',' undergradu level 2');
-INSERT into Enroll VALUES(1,1,'2016-02-20 ');
+insert into Teaching VALUES('1C',2);
 End TRY
 BEGIN CATCH
 select ERROR_NUMBER()
@@ -16,7 +14,7 @@ end CATCH
 /* ----------------------- TRANSACTION in FALSE state ----------------------- */
 Begin TRY
 BEGIN TRANSACTION
-insert into Student VALUES(1,'khaled','231@feng',' undergradu level 1'),(2,'wjlks','231@feng',' undergradu level 2');
+insert into Teaching VALUES('1C',3);
 INSERT into Enroll VALUES(1,1,'2016-02-20 ',);
 End TRY
 BEGIN CATCH
