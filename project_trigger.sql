@@ -1,4 +1,4 @@
-use universityprojectv4;
+use universityprojectv5;
 
 /* ------ tirgger to see the DELETE data when you update student table ------ */
 create TRIGGER shStudDeletedDatewhenUpdate
@@ -16,7 +16,7 @@ BEGIN
 select * from inserted
 end;
 --try previous tigger
-update student set StudentName='solim' WHERE DID=1;
+update student set StudentName='solim' WHERE  STUDENTID=2;
 
 /* ---------------show student name , lecuture and section table when student enroll in aparticular course----------------------------------- */
 create TRIGGER showLectandSec
@@ -25,10 +25,10 @@ AS
 BEGIN
 select StudentName from Student where STUDENTID=(select STUDENTID FROM inserted)
 select * from Lecture where COURSEID=(select COURSEID FROM inserted )
-select * from Section where COURSEID=(select COURSEID FROM inserted )
 END
+ 
 --try trigger
-INSERT into Enroll VALUES(1,1,'2016-02-20 ');
+INSERT into Enroll VALUES(4, '1Cff','2020-07-24');
 
 /* ------ prevent any person from create,alter,drop table from database ----- */
 create trigger trPermissionOnTable
@@ -49,7 +49,6 @@ on Enroll FOR INSERT
 AS
 BEGIN
 select * from Lecture where COURSEID=(select COURSEID FROM inserted )
-select * from Section where COURSEID=(select COURSEID FROM inserted )
 END
 --try trigger
 INSERT into Enroll VALUES(1,1,'2016-02-20 ','');
