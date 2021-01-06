@@ -1,4 +1,5 @@
-use universityprojectv4;
+
+use universityprojectv5;
 /* --- return faculity id by using faculityName -- */
 create FUNCTION dbo.returnFaculityId
 (@FName VARCHAR(50)) RETURNS INT
@@ -20,10 +21,7 @@ select dbo.returnStudentId('solim')
 --try function
 select * from Enroll where STUDENTID=dbo.returnStudentId('solim')
 
-/* ----------- select courseName and student name when studenid=1 ----------- */
-select StudentName ,CourseName from Student
-join Course
-on STUDENTID=1 AND COURSEID=(select distinct COURSEID from Enroll where STUDENTID=1)
+
 
 /* -------- select student name where student name start with char s -------- */
 select StudentName from Student where StudentName like 's%'
@@ -36,7 +34,8 @@ select StudentName from Student where StudentName like '%l%'
 select * from Course where CourseName in ('os','DB')
 
 /* ------------------- update course name where courseid=1 ------------------ */
-update Course set CourseName='machineLearning' where COURSEID=1
+update Course set CourseName='machineLearning' where COURSEID='1C';
+
 select * from Course
 
 /* ------------------- insert values into faculity tables ------------------- */
@@ -72,10 +71,7 @@ select * from StudentDegree where STUDENTID=1
 
 /* ------------- the name of the staff who teach the courseid=1 ------------- */
 select * from Staff where STAFFID=(
-    SELECT STAFFID FROM Teaching where COURSEID=1
+    SELECT STAFFID FROM Teaching where COURSEID='1C'
 )
-
-
-
 
 
